@@ -10,6 +10,8 @@ public class OptionsParser {
         return after;
     }
 
+
+
     public static MoveDirection[] parse(String[] args) {
         MoveDirection[] result = new MoveDirection[0];
         for (String arg : args) {

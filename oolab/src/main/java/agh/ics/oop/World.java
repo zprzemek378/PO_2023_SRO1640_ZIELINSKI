@@ -7,7 +7,7 @@ public class World {
             switch (move) {
                 case FORWARD -> System.out.println("Zwierzak idzie do przodu");
                 case RIGHT -> System.out.println("Zwierzak skręca w prawo");
-                case BACKWARD -> System.out.println("Zwierzak idzie do tyłu");
+                case BACKWARD -> System.out.println("Zwierzak iddzie do tyłu");
                 case LEFT -> System.out.println("Zwierzak skręca w lewo");
             }
         }
@@ -18,4 +18,6 @@ public class World {
         run(OptionsParser.parse(args));
         System.out.println("System zakończył działanie");
     }
+
+
 }
