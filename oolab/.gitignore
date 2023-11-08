@@ -39,8 +39,10 @@ bin/
 .vscode/
 
 ### Mac OS ###
-*.DS_Store
+.DS_Store
 
 .idea
 gradlew
 gradlew.bat
+
+/.DS_Store
