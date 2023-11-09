@@ -1,1 +1,46 @@
-.DS_Store
+oolab/.gradle
+oolab/build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+oolab/.idea/modules.xml
+oolab/.idea/jarRepositories.xml
+oolab/.idea/compiler.xml
+oolab/.idea/libraries/
+*.iws
+*.iml
+*.ipr
+oolab/out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+oolab/bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+oolab/nbproject/private/
+oolab/nbbuild/
+oolab/dist/
+oolab/nbdist/
+oolab/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+**/.DS_Store
+
+oolab/.idea
+oolab/gradlew
+oolab/gradlew.bat
