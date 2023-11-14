@@ -5,7 +5,7 @@ oolab/build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 oolab/.idea/modules.xml
 oolab/.idea/jarRepositories.xml
 oolab/.idea/compiler.xml
