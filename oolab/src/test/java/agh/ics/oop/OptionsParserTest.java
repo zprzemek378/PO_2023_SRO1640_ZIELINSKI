@@ -24,4 +24,28 @@ public class OptionsParserTest {
 
     assertEquals(expected, OptionsParser.parse(input));
     }
+
+    @Test
+    void parserTest2() {
+        List<MoveDirection> expected = new ArrayList<>(List.of(
+                MoveDirection.FORWARD,
+                MoveDirection.FORWARD,
+                MoveDirection.BACKWARD,
+                MoveDirection.RIGHT,
+                MoveDirection.LEFT
+        ));
+
+        String[] input = new String[]{"xggg","f", "f", "b", "ff", "r", "l","k"};
+
+        assertEquals(expected, OptionsParser.parse(input));
+    }
+
+    @Test
+    void parserTest3() {
+        List<MoveDirection> expected = new ArrayList<>(List.of());
+
+        String[] input = new String[]{};
+
+        assertEquals(expected, OptionsParser.parse(input));
+    }
 }

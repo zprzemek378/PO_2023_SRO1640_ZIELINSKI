@@ -1,11 +1,11 @@
 package agh.ics.oop.model;
 
 public class Animal {
-    public Vector2d getAnimalPosition() {
-        return animalPosition;
-    }
+
 
     private Vector2d animalPosition;
+
+
     private MapDirection animalDirection;
 
     public Animal(Vector2d animalPosition) {
@@ -20,7 +20,7 @@ public class Animal {
         return position.equals(animalPosition);
     }
 
-    public void move(MoveDirection direction) {
+    public void move(MoveDirection direction, MoveValidator moveValidator) {
         Vector2d newPosition = animalPosition;
         switch(direction) {
             case RIGHT -> animalDirection = animalDirection.next();
@@ -28,18 +28,32 @@ public class Animal {
             case FORWARD -> newPosition = animalPosition.add(animalDirection.toUnitVector());
             case BACKWARD -> newPosition = animalPosition.subtract(animalDirection.toUnitVector());
         }
-        newPosition = newPosition.upperRight(new Vector2d(0,0));
-        newPosition = newPosition.lowerLeft(new Vector2d(4,4));
+
+        if(!moveValidator.canMoveTo(newPosition)) {
+            return;
+        }
+
         animalPosition = newPosition;
+
+
     }
 
     @Override
     public String toString() {
-        return animalPosition + ", " + animalDirection;
+        return switch(animalDirection) {
+            case NORTH -> "N";
+            case SOUTH -> "S";
+            case WEST -> "W";
+            case EAST -> "E";
+        };
     }
 
     public MapDirection getAnimalDirection() {
         return animalDirection;
+    }
+
+    public Vector2d getAnimalPosition() {
+        return animalPosition;
     }
 
 

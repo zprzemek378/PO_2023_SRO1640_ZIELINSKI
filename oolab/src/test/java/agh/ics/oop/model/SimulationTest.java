@@ -16,13 +16,13 @@ public class SimulationTest {
         };
         List<MoveDirection> directions = OptionsParser.parse(moves);
         List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions, new RectangularMap(5,5));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
 
-        Vector2d expectedPosition0 = new Vector2d(3, 0);
-        Vector2d expectedPosition1 = new Vector2d(2, 4);
+        Vector2d expectedPosition0 = new Vector2d(2, 0);
+        Vector2d expectedPosition1 = new Vector2d(3, 4);
         MapDirection expectedDirection0 = MapDirection.SOUTH;
         MapDirection expectedDirection1 = MapDirection.NORTH;
 
