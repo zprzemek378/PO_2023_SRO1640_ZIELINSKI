@@ -16,9 +16,9 @@ public class Simulation {
 
     private List<Animal> animals = new ArrayList<>();
     private List<MoveDirection> moves = new ArrayList<>();
-    private WorldMap worldMap;
+    private WorldMap<Animal, Vector2d> worldMap;
 
-    public Simulation(List<Vector2d> positions, List<MoveDirection> moves, WorldMap worldMap) {
+    public Simulation(List<Vector2d> positions, List<MoveDirection> moves, WorldMap<Animal, Vector2d> worldMap) {
         for (Vector2d position : positions) {
             animals.add(new Animal(position));
         }
