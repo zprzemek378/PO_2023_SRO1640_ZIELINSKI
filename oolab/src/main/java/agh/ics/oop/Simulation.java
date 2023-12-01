@@ -16,9 +16,9 @@ public class Simulation {
 
     private List<Animal> animals = new ArrayList<>();
     private List<MoveDirection> moves = new ArrayList<>();
-    private WorldMap<Animal, Vector2d> worldMap;
+    private WorldMap worldMap;
 
-    public Simulation(List<Vector2d> positions, List<MoveDirection> moves, WorldMap<Animal, Vector2d> worldMap) {
+    public Simulation(List<Vector2d> positions, List<MoveDirection> moves, WorldMap worldMap) {
         for (Vector2d position : positions) {
             animals.add(new Animal(position));
         }
@@ -40,8 +40,9 @@ public class Simulation {
 
             i = (i+1)%animals.size();
 //            System.out.println("Zwierzę " + i + ": " + animals.get(i));
+//            System.out.println(move);
             System.out.println(worldMap);
-            System.out.println(move);
+
         }
     }
 }
