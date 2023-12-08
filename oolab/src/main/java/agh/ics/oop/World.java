@@ -15,7 +15,7 @@ public class World {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PositionAlreadyOccupiedException {
         System.out.println("System wystartował");
 //        run(OptionsParser.parse(args));
 
@@ -56,12 +56,33 @@ public class World {
 
         //grass test
         String[] moves = new String[]{
-                "f", "f", "b", "l", "b", "r", "f", "o", "r", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "f", "r", "l"
+                "f", "f", "b", "l", "b", "f", "l"
         };
-        List<MoveDirection> directions = OptionsParser.parse(moves);
-        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(0,0));
-        Simulation simulation = new Simulation(positions, directions, new GrassField(10));
-        simulation.run();
+        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(2,2));
+
+//        String[] moves = args;
+
+        try {
+            List<MoveDirection> directions = OptionsParser.parse(moves);
+            GrassField grassField = new GrassField(10);
+            Simulation simulation = new Simulation(positions, directions, grassField);
+            grassField.addObserver(new ConsoleMapDisplay());
+            simulation.run();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+
+
+//        try {
+//            simulation.run();
+//        }
+//        catch (PositionAlreadyOccupiedException e) {
+//            System.out.println(e);
+//        }
+
+
+
 
 
         System.out.println("System zakończył działanie");

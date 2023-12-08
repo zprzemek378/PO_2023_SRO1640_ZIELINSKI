@@ -25,8 +25,7 @@ public class RectangularMap extends AbstractWorldMap {
     }
 
     @Override
-    public String toString() {
-        MapVisualizer mapVisualizer = new MapVisualizer(this);
-        return mapVisualizer.draw(new Vector2d(0,0), new Vector2d(width-1, height-1));
+    public Boundary getCurrentBounds() {
+        return new Boundary(new Vector2d(0,0), new Vector2d(width-1, height-1));
     }
 }

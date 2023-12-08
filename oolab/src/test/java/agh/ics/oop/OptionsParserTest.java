@@ -20,7 +20,7 @@ public class OptionsParserTest {
             MoveDirection.LEFT
     ));
 
-    String[] input = new String[]{"x","f", "f", "b", "o", "r", "l","k"};
+    String[] input = new String[]{"f", "f", "b", "r", "l"};
 
     assertEquals(expected, OptionsParser.parse(input));
     }
@@ -35,13 +35,38 @@ public class OptionsParserTest {
                 MoveDirection.LEFT
         ));
 
-        String[] input = new String[]{"xggg","f", "f", "b", "ff", "r", "l","k"};
+        String[] input = new String[]{"f", "o", "f", "b", "r", "x", "l"};
 
-        assertEquals(expected, OptionsParser.parse(input));
+        try {
+            OptionsParser.parse(input);
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals("\"o\" is not legal move specification", e.getMessage());
+        }
     }
 
     @Test
     void parserTest3() {
+        List<MoveDirection> expected = new ArrayList<>(List.of(
+                MoveDirection.FORWARD,
+                MoveDirection.FORWARD,
+                MoveDirection.BACKWARD,
+                MoveDirection.RIGHT,
+                MoveDirection.LEFT
+        ));
+
+        String[] input = new String[]{"xggg","f", "f", "b", "ff", "r", "l","k"};
+
+        try {
+            OptionsParser.parse(input);
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals("\"xggg\" is not legal move specification", e.getMessage());
+        }
+    }
+
+    @Test
+    void parserTest4() {
         List<MoveDirection> expected = new ArrayList<>(List.of());
 
         String[] input = new String[]{};

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RectangularMapTest {
 
     @Test
-    void placeMoveTest() {
+    void placeMoveTest() throws PositionAlreadyOccupiedException {
         // initialize
         RectangularMap rectangularMap = new RectangularMap(10,10);
         Animal animal1 = new Animal(new Vector2d(4,4));
@@ -26,7 +26,11 @@ public class RectangularMapTest {
         //place test
         assertTrue(rectangularMap.place(animal1));
         assertTrue(rectangularMap.place(animal2));
-        assertFalse(rectangularMap.place(animal3));
+        try {
+            rectangularMap.place(animal3);
+        } catch (PositionAlreadyOccupiedException e) {
+            assertEquals("Position (4, 4) is already occupied", e.getMessage());
+        }
         assertTrue(rectangularMap.place(animal4));
 
         assertEquals(animals, rectangularMap.getAnimals());
@@ -64,7 +68,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    void isOccupiedTest() {
+    void isOccupiedTest() throws PositionAlreadyOccupiedException {
         RectangularMap rectangularMap = new RectangularMap(10,10);
         Animal animal1 = new Animal(new Vector2d(4,4));
         Animal animal2 = new Animal(new Vector2d(2,1));
@@ -79,7 +83,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    void objectAtTest() {
+    void objectAtTest() throws PositionAlreadyOccupiedException {
         RectangularMap rectangularMap = new RectangularMap(10,10);
         Animal animal1 = new Animal(new Vector2d(4,4));
         Animal animal2 = new Animal(new Vector2d(2,1));
@@ -87,7 +91,11 @@ public class RectangularMapTest {
 
         assertNull(rectangularMap.objectAt(new Vector2d(4, 4)));
         rectangularMap.place(animal1);
-        rectangularMap.place(animal3);
+        try {
+            rectangularMap.place(animal3);
+        } catch (PositionAlreadyOccupiedException e) {
+            assertEquals("Position (4, 4) is already occupied", e.getMessage());
+        }
         assertEquals(animal1, rectangularMap.objectAt(new Vector2d(4,4)));
         assertNull(rectangularMap.objectAt(new Vector2d(3, 2)));
         rectangularMap.place(animal2);
