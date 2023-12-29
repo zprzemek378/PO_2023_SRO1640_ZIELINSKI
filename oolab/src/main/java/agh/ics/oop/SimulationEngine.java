@@ -52,12 +52,8 @@ public class SimulationEngine {
         for(Simulation simulation : simulations) {
             executorService.submit(simulation);
         }
-        try {
-            executorService.shutdown();
-            executorService.awaitTermination(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        executorService.shutdown();
+//            executorService.awaitTermination(10, TimeUnit.SECONDS);
 
     }
 }
