@@ -1,88 +1,73 @@
 package agh.ics.oop;
 import agh.ics.oop.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class World {
-    public static void run(MoveDirection[] moves) {
-        for (MoveDirection move : moves) {
-            switch (move) {
-                case FORWARD -> System.out.println("Zwierzak idzie do przodu");
-                case RIGHT -> System.out.println("Zwierzak skręca w prawo");
-                case BACKWARD -> System.out.println("Zwierzak iddzie do tyłu");
-                case LEFT -> System.out.println("Zwierzak skręca w lewo");
-            }
-        }
-    }
-
-    public static void main(String[] args) throws PositionAlreadyOccupiedException {
+    public static void main(String[] args){
         System.out.println("System wystartował");
-//        run(OptionsParser.parse(args));
 
-//        MapDirection varr = MapDirection.SOUTH;
-//        MapDirection varr2 = varr.next().previous().previous();
-//        System.out.println(varr2.toUnitVector());
-
-//        Vector2d position = new Vector2d(3,4);
-//        Animal animal = new Animal(position);
-//        animal.move(MoveDirection.FORWARD);
-//        animal.move(MoveDirection.LEFT);
-//        animal.move(MoveDirection.FORWARD);
-//        animal.move(MoveDirection.BACKWARD);
-//        System.out.println(animal);
-//        System.out.println(animal.isAt(new Vector2d(3,7)));
-
-//        List<MoveDirection> directions = OptionsParser.parse(args);
-//        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-//        Simulation simulation = new Simulation(positions, directions);
-//        simulation.run();
-
-//        RectangularMap rectangularMap = new RectangularMap(3,4);
-//
-//        System.out.println(        rectangularMap.getAnimals());
-
-
-
-
-
-        //rectangular test
-//        String[] moves = new String[]{
-//                "f", "f", "b", "l", "b", "r", "f", "o", "r", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "f", "r", "l"
-//        };
-//        List<MoveDirection> directions = OptionsParser.parse(moves);
-//        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(0,0));
-//        Simulation simulation = new Simulation(positions, directions, new RectangularMap(8,5));
-//        simulation.run();
-
-        //grass test
-        String[] moves = new String[]{
-                "f", "f", "b", "l", "b", "f", "l"
+        String[] movesGrass = new String[]{
+                "f", "f", "b", "l", "b", "f", "l", "r", "l", "r", "f", "b", "b", "r", "f", "l", "r", "b", "f", "f", "l", "r"
         };
-        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(2,2));
+        List<Vector2d> positionsGrass = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(2,11));
 
-//        String[] moves = args;
-
-        try {
-            List<MoveDirection> directions = OptionsParser.parse(moves);
-            GrassField grassField = new GrassField(10);
-            Simulation simulation = new Simulation(positions, directions, grassField);
-            grassField.addObserver(new ConsoleMapDisplay());
-            simulation.run();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-
-
+        String[] movesRectangular = new String[]{
+                "r", "f", "f", "l", "b", "r", "f", "r", "l", "r", "f", "r", "b", "r", "f", "f", "r", "r", "f", "f", "l", "r"
+        };
+        List<Vector2d> positionsRectangular = List.of(new Vector2d(2, 7), new Vector2d(1, 4), new Vector2d(6,4));
 
 //        try {
-//            simulation.run();
+//            List<MoveDirection> directionsGrass = OptionsParser.parse(movesGrass);
+//            List<MoveDirection> directionsRectangular = OptionsParser.parse(movesRectangular);
+//
+//            GrassField grassField = new GrassField(10);
+//            RectangularMap rectangularMap = new RectangularMap(10,10);
+//
+//            Simulation simulationGrass = new Simulation(positionsGrass, directionsGrass, grassField);
+//            Simulation simulationRectangular = new Simulation(positionsRectangular, directionsRectangular, rectangularMap);
+//
+//            ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+//
+//            grassField.addObserver(consoleMapDisplay);
+//            rectangularMap.addObserver(consoleMapDisplay);
+//
+//            SimulationEngine simulationEngine = new SimulationEngine(List.of(simulationGrass, simulationRectangular));
+//            simulationEngine.runAsyncInThreadPool();
+//
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
 //        }
-//        catch (PositionAlreadyOccupiedException e) {
-//            System.out.println(e);
-//        }
+
+        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+        List<Simulation> simulations = new ArrayList<>();
+        for(int index = 0; index < 500000; index++) {
+
+            try {
+                List<MoveDirection> directionsGrass = OptionsParser.parse(movesGrass);
+                List<MoveDirection> directionsRectangular = OptionsParser.parse(movesRectangular);
+
+                GrassField grassField = new GrassField(10);
+                RectangularMap rectangularMap = new RectangularMap(10,10);
+
+                Simulation simulationGrass = new Simulation(positionsGrass, directionsGrass, grassField);
+                Simulation simulationRectangular = new Simulation(positionsRectangular, directionsRectangular, rectangularMap);
+
+                grassField.addObserver(consoleMapDisplay);
+                rectangularMap.addObserver(consoleMapDisplay);
+
+                simulations.add(simulationGrass);
+                simulations.add(simulationRectangular);
 
 
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
 
+        SimulationEngine simulationEngine = new SimulationEngine(simulations);
+        simulationEngine.runAsyncInThreadPool();
 
 
         System.out.println("System zakończył działanie");

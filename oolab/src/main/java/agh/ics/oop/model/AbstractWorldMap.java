@@ -7,6 +7,8 @@ import java.util.*;
 public abstract class AbstractWorldMap implements WorldMap {
     protected Map<Vector2d, Animal> animals = new HashMap<>();
 
+    private final UUID id = UUID.randomUUID();
+
     public Map<Vector2d, Animal> getAnimals() {
         return animals;
     }
@@ -22,9 +24,9 @@ public abstract class AbstractWorldMap implements WorldMap {
     }
 
     public void mapChanged(String message) {
-        for (MapChangeListener observer : observers) {
-            observer.mapChanged(this, message);
-        }
+//        for (MapChangeListener observer : observers) {
+//            observer.mapChanged(this, message);
+//        }
     }
 
 
@@ -81,6 +83,11 @@ public abstract class AbstractWorldMap implements WorldMap {
         MapVisualizer mapVisualizer = new MapVisualizer(this);
 
         return mapVisualizer.draw(getCurrentBounds().bottomLeft(), getCurrentBounds().upperRight());
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
     }
 
 

@@ -14,6 +14,8 @@ public class GrassField extends AbstractWorldMap {
     private final int maxWidth;
     private final int maxHeight;
 
+
+
     public GrassField(int grassCount) {
         this.grassCount = grassCount;
         this.maxWidth = (int) Math.sqrt(grassCount*10);
