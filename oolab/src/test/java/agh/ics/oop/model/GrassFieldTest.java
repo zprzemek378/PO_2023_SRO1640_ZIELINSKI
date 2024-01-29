@@ -11,7 +11,7 @@ public class GrassFieldTest {
 
 
     @Test
-    void placeMoveTest() {
+    void placeMoveTest() throws PositionAlreadyOccupiedException {
         // initialize
         GrassField grassField = new GrassField(4);
         Animal animal1 = new Animal(new Vector2d(4,4));
@@ -27,7 +27,11 @@ public class GrassFieldTest {
         //place test
         assertTrue(grassField.place(animal1));
         assertTrue(grassField.place(animal2));
-        assertFalse(grassField.place(animal3));
+        try {
+            grassField.place(animal3);
+        } catch (PositionAlreadyOccupiedException e) {
+            assertEquals("Position (4, 4) is already occupied", e.getMessage());
+        }
         assertTrue(grassField.place(animal4));
 
         assertEquals(animals, grassField.getAnimals());
@@ -61,7 +65,7 @@ public class GrassFieldTest {
     }
 
     @Test
-    void isOccupiedTest() {
+    void isOccupiedTest() throws PositionAlreadyOccupiedException {
         GrassField grassField = new GrassField(4);
         Animal animal1 = new Animal(new Vector2d(4,4));
         Animal animal2 = new Animal(new Vector2d(2,1));
@@ -75,14 +79,18 @@ public class GrassFieldTest {
     }
 
     @Test
-    void objectAtTest() {
+    void objectAtTest() throws PositionAlreadyOccupiedException {
         GrassField grassField = new GrassField(4);
         Animal animal1 = new Animal(new Vector2d(4,4));
         Animal animal2 = new Animal(new Vector2d(2,1));
         Animal animal3 = new Animal(new Vector2d(4,4));
 
         grassField.place(animal1);
-        grassField.place(animal3);
+        try {
+            grassField.place(animal3);
+        } catch (PositionAlreadyOccupiedException e) {
+            assertEquals("Position (4, 4) is already occupied", e.getMessage());
+        }
         assertEquals(animal1, grassField.objectAt(new Vector2d(4,4)));
         grassField.place(animal2);
         assertEquals(animal2, grassField.objectAt(new Vector2d(2,1)));

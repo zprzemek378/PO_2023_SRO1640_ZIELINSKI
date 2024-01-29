@@ -43,11 +43,16 @@ public class GrassField extends AbstractWorldMap {
         return super.objectAt(position);
     }
 
+    @Override
+    public Collection<WorldElement> getElements() {
+        List<WorldElement> elements = (List<WorldElement>) super.getElements();
+        elements.addAll(grasses.values());
 
+        return elements;
+    }
 
     @Override
-    public String toString() {
-        MapVisualizer mapVisualizer = new MapVisualizer(this);
+    public Boundary getCurrentBounds() {
         List<Vector2d> animalsValue = new ArrayList<>(animals.keySet()); //pobieram wartości położeń animals
         List<Vector2d> grassesValue = new ArrayList<>(grasses.keySet()); //pobieram wartości położeń trawy
 
@@ -72,15 +77,7 @@ public class GrassField extends AbstractWorldMap {
             upperRight = new Vector2d(1,1);
         }
 
-        return mapVisualizer.draw(lowerLeft, upperRight);
-    }
-
-    @Override
-    public Collection<WorldElement> getElements() {
-        List<WorldElement> elements = (List<WorldElement>) super.getElements();
-        elements.addAll(grasses.values());
-
-        return elements;
+        return new Boundary(lowerLeft, upperRight);
     }
 }
 
