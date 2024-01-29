@@ -34,6 +34,7 @@ public class MapVisualizer {
      * @return String representation of the selected region of the map.
      */
     public String draw(Vector2d lowerLeft, Vector2d upperRight) {
+
         StringBuilder builder = new StringBuilder();
         for (int i = upperRight.getY() + 1; i >= lowerLeft.getY() - 1; i--) {
             if (i == upperRight.getY() + 1) {
@@ -54,6 +55,8 @@ public class MapVisualizer {
         }
         return builder.toString();
     }
+
+
 
     private String drawFrame(boolean innerSegment) {
         if (innerSegment) {

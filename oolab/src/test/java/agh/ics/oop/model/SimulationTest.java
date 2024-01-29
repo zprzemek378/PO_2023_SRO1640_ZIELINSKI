@@ -4,7 +4,6 @@ import agh.ics.oop.OptionsParser;
 import agh.ics.oop.Simulation;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,8 +25,8 @@ public class SimulationTest {
         MapDirection expectedDirection0 = MapDirection.SOUTH;
         MapDirection expectedDirection1 = MapDirection.NORTH;
 
-        assertEquals(expectedPosition0, animals.get(0).getAnimalPosition());
-        assertEquals(expectedPosition1, animals.get(1).getAnimalPosition());
+        assertEquals(expectedPosition0, animals.get(0).getPosition());
+        assertEquals(expectedPosition1, animals.get(1).getPosition());
         assertEquals(expectedDirection0, animals.get(0).getAnimalDirection());
         assertEquals(expectedDirection1, animals.get(1).getAnimalDirection());
     }
@@ -51,9 +50,9 @@ public class SimulationTest {
         MapDirection expectedDirection1 = MapDirection.SOUTH;
         MapDirection expectedDirection2 = MapDirection.NORTH;
 
-        assertEquals(expectedPosition0, animals.get(0).getAnimalPosition());
-        assertEquals(expectedPosition1, animals.get(1).getAnimalPosition());
-        assertEquals(expectedPosition2, animals.get(2).getAnimalPosition());
+        assertEquals(expectedPosition0, animals.get(0).getPosition());
+        assertEquals(expectedPosition1, animals.get(1).getPosition());
+        assertEquals(expectedPosition2, animals.get(2).getPosition());
         assertEquals(expectedDirection0, animals.get(0).getAnimalDirection());
         assertEquals(expectedDirection1, animals.get(1).getAnimalDirection());
         assertEquals(expectedDirection2, animals.get(2).getAnimalDirection());

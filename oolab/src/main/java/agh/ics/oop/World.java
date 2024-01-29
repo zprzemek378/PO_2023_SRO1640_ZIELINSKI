@@ -41,13 +41,26 @@ public class World {
 //
 //        System.out.println(        rectangularMap.getAnimals());
 
+
+
+
+
+        //rectangular test
+//        String[] moves = new String[]{
+//                "f", "f", "b", "l", "b", "r", "f", "o", "r", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "f", "r", "l"
+//        };
+//        List<MoveDirection> directions = OptionsParser.parse(moves);
+//        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(0,0));
+//        Simulation simulation = new Simulation(positions, directions, new RectangularMap(8,5));
+//        simulation.run();
+
+        //grass test
         String[] moves = new String[]{
                 "f", "f", "b", "l", "b", "r", "f", "o", "r", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "f", "r", "l"
-
         };
         List<MoveDirection> directions = OptionsParser.parse(moves);
         List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(0,0));
-        Simulation simulation = new Simulation(positions, directions, new RectangularMap(8,5));
+        Simulation simulation = new Simulation(positions, directions, new GrassField(10));
         simulation.run();
 
 

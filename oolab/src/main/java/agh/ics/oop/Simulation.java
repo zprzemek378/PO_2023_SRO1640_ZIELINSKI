@@ -40,8 +40,9 @@ public class Simulation {
 
             i = (i+1)%animals.size();
 //            System.out.println("Zwierzę " + i + ": " + animals.get(i));
+//            System.out.println(move);
             System.out.println(worldMap);
-            System.out.println(move);
+
         }
     }
 }

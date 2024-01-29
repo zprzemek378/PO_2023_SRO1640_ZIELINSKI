@@ -1,15 +1,15 @@
 package agh.ics.oop.model;
 
-public class Animal {
+public class Animal implements WorldElement {
 
 
-    private Vector2d animalPosition;
+    private Vector2d position;
 
 
     private MapDirection animalDirection;
 
     public Animal(Vector2d animalPosition) {
-        this.animalPosition = animalPosition;
+        this.position = animalPosition;
         animalDirection = MapDirection.NORTH;
     }
     public Animal() {
@@ -17,23 +17,23 @@ public class Animal {
     }
 
     public boolean isAt(Vector2d position) {
-        return position.equals(animalPosition);
+        return position.equals(this.position);
     }
 
     public void move(MoveDirection direction, MoveValidator moveValidator) {
-        Vector2d newPosition = animalPosition;
+        Vector2d newPosition = position;
         switch(direction) {
             case RIGHT -> animalDirection = animalDirection.next();
             case LEFT -> animalDirection = animalDirection.previous();
-            case FORWARD -> newPosition = animalPosition.add(animalDirection.toUnitVector());
-            case BACKWARD -> newPosition = animalPosition.subtract(animalDirection.toUnitVector());
+            case FORWARD -> newPosition = position.add(animalDirection.toUnitVector());
+            case BACKWARD -> newPosition = position.subtract(animalDirection.toUnitVector());
         }
 
         if(!moveValidator.canMoveTo(newPosition)) {
             return;
         }
 
-        animalPosition = newPosition;
+        position = newPosition;
 
 
     }
@@ -52,8 +52,9 @@ public class Animal {
         return animalDirection;
     }
 
-    public Vector2d getAnimalPosition() {
-        return animalPosition;
+    @Override
+    public Vector2d getPosition() {
+        return position;
     }
 
 

@@ -15,7 +15,8 @@ public class OptionsParser {
 //    }
 //
 
-
+    // używam ArrayListy, ponieważ chcę mieć łatwy dostep do elementów na danym indeksie:
+    // w ArrayLiście jest to O(1)
     public static List<MoveDirection> parse(String[] args) {
         List<MoveDirection> result = new ArrayList<>();
         for (String arg : args) {
