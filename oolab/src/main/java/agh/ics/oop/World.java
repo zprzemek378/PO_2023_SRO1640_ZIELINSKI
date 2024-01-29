@@ -1,8 +1,5 @@
 package agh.ics.oop;
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MapDirection;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.*;
 
 import java.util.List;
 
@@ -35,10 +32,24 @@ public class World {
 //        System.out.println(animal);
 //        System.out.println(animal.isAt(new Vector2d(3,7)));
 
-        List<MoveDirection> directions = OptionsParser.parse(args);
-        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-        Simulation simulation = new Simulation(positions, directions);
+//        List<MoveDirection> directions = OptionsParser.parse(args);
+//        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
+//        Simulation simulation = new Simulation(positions, directions);
+//        simulation.run();
+
+//        RectangularMap rectangularMap = new RectangularMap(3,4);
+//
+//        System.out.println(        rectangularMap.getAnimals());
+
+        String[] moves = new String[]{
+                "f", "f", "b", "l", "b", "r", "f", "o", "r", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "b", "b", "f", "f", "r", "l"
+
+        };
+        List<MoveDirection> directions = OptionsParser.parse(moves);
+        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(0,0));
+        Simulation simulation = new Simulation(positions, directions, new RectangularMap(8,5));
         simulation.run();
+
 
         System.out.println("System zakończył działanie");
     }
