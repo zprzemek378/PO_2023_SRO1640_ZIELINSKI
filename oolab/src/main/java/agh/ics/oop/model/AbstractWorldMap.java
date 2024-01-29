@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
 import agh.ics.oop.model.util.MapVisualizer;
+import javafx.application.Platform;
 
 import java.util.*;
 
@@ -24,9 +25,9 @@ public abstract class AbstractWorldMap implements WorldMap {
     }
 
     public void mapChanged(String message) {
-//        for (MapChangeListener observer : observers) {
-//            observer.mapChanged(this, message);
-//        }
+        for (MapChangeListener observer : observers) {
+            observer.mapChanged(this, message);
+        }
     }
 
 

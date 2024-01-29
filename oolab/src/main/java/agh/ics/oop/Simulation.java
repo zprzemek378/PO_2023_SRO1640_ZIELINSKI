@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +27,12 @@ public class Simulation implements Runnable {
     public void run() {
         Iterator<Animal> iterator = animals.iterator();
         while(iterator.hasNext()) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             Animal animal = iterator.next();
             try {
                 worldMap.place(animal);
@@ -38,8 +45,18 @@ public class Simulation implements Runnable {
 
         int i = 0;
         for(MoveDirection move : moves) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             Animal currentAnimal = animals.get(i);
             worldMap.move(currentAnimal, move);
+
+
+
+
 
             i = (i+1)%animals.size();
 //            System.out.println("Zwierzę " + i + ": " + animals.get(i));
